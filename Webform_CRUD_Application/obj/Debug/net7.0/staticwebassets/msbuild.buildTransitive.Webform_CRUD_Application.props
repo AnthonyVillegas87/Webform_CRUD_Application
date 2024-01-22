@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="../buildMultiTargeting/Webform_CRUD_Application.props" />
+</Project>
