@@ -1,18 +1,40 @@
-@model System.Collections.Generic.List<Webform_CRUD_Application.Models.WidgetEntity>
 
-@{
-    Layout = null;
-}
+@using Webform_CRUD_Application.Models
 
-<!DOCTYPE html>
+@model IEnumerable<Webform_CRUD_Application.Models.WidgetEntity>
 
-<html>
-    <head>
-        <title>Widgets</title>
-    </head>
-    <body>
-        <div>
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.InventoryCode)</th>
+        <th>@Html.DisplayNameFor(model => model.Description)</th>
+        <th>@Html.DisplayNameFor(model => model.QuantityOnHand)</th>
+        <th>@Html.DisplayNameFor(model => model.ReorderQuantity)</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var item in Model)
     
-        </div>
-    </body>
-</html>
+    {
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.InventoryCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+            <td>@Html.DisplayFor(modelItem => item.QuantityOnHand)</td>
+            <td>@Html.DisplayFor(modelItem => item.ReorderQuantity)</td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.WidgetId">Edit</a>
+                    
+                <a asp-action="Delete" asp-route-id="@item.WidgetId">Delete</a>
+            </td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+<p>
+    <a asp-action="Create" asp-controller="Widget">Create Widget</a>
+    
+</p>

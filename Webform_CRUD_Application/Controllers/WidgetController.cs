@@ -8,6 +8,7 @@ public class WidgetController : Controller
 {
     public IActionResult Index()
     {
+        
         List<WidgetEntity> widgets = new List<WidgetEntity>();
         WidgetRepository widgetRepository = new WidgetRepository();
         widgets = widgetRepository.GetWidgetList();

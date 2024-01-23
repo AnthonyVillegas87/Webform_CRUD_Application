@@ -13,8 +13,10 @@ public class WidgetRepository
     public WidgetRepository()
     {
         string dbConnection =
-            "server=localhost; database=DotNetDevSample; IntegratedSecurity=true; TrustServerCertificate=true";
+            "server=localhost;database=DotNetDevSample;" + "Integrated security=true; TrustServerCertificate=true";
         _sqlConnection = new SqlConnection(dbConnection);
+        
+        
     }
     
     // Method for dbo.sp_GetWidgetList 
@@ -28,7 +30,7 @@ public class WidgetRepository
         SqlDataAdapter dataAdapter = new SqlDataAdapter(getCommand);
         DataTable dataTable = new DataTable();
         dataAdapter.Fill(dataTable);
-
+        
         foreach (DataRow dataRow in dataTable.Rows)
         {
             widgetClassEntity.Add(
@@ -36,8 +38,8 @@ public class WidgetRepository
                 {
                     
                     WidgetId = Convert.ToInt32(dataRow["WidgetID"]),
-                    InventoryCode = dataRow["InventoryCode"].ToString(),
-                    Description = dataRow["Description"].ToString(),
+                    InventoryCode = (string) dataRow["InventoryCode"],
+                    Description = (string) dataRow["Description"],
                     QuantityOnHand = Convert.ToInt32(dataRow["QuantityOnHand"]),
                     ReorderQuantity = Convert.ToInt32(dataRow["ReorderQuantity"])
                     
@@ -50,7 +52,4 @@ public class WidgetRepository
 
     }
     
-    
-    
-   
 }
