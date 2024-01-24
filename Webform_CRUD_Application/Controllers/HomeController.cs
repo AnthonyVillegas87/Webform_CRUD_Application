@@ -1,5 +1,6 @@
 ﻿using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
+using Webform_CRUD_Application.Data;
 using Webform_CRUD_Application.Models;
 
 namespace Webform_CRUD_Application.Controllers;
@@ -15,8 +16,12 @@ public class HomeController : Controller
 
     public IActionResult Index()
     {
-        return View("/Pages/Widget/Index.cshtml");
+        List<WidgetEntity> widgets = new List<WidgetEntity>();
+        WidgetRepository widgetRepository = new WidgetRepository();
+        widgets = widgetRepository.GetWidgetList();
+        return View(widgets);
     }
+    
     
 
     public IActionResult Privacy()

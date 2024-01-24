@@ -1,36 +1,35 @@
 
-@using Webform_CRUD_Application.Models
 
 @model IEnumerable<Webform_CRUD_Application.Models.WidgetEntity>
 
 
+
 <table class="table">
-    <thead>
     <tr>
+        <th>@Html.DisplayNameFor(model => model.WidgetId)</th>
         <th>@Html.DisplayNameFor(model => model.InventoryCode)</th>
         <th>@Html.DisplayNameFor(model => model.Description)</th>
         <th>@Html.DisplayNameFor(model => model.QuantityOnHand)</th>
         <th>@Html.DisplayNameFor(model => model.ReorderQuantity)</th>
-        <th>Actions</th>
+        <th></th>
     </tr>
-    </thead>
-    <tbody>
-    @foreach (var item in Model)
     
+    @foreach (var item in Model)
     {
+        @Html.HiddenFor(model => item.WidgetId)
         <tr>
+            <td>@Html.DisplayFor(modelItem => item.WidgetId)</td>
             <td>@Html.DisplayFor(modelItem => item.InventoryCode)</td>
             <td>@Html.DisplayFor(modelItem => item.Description)</td>
             <td>@Html.DisplayFor(modelItem => item.QuantityOnHand)</td>
             <td>@Html.DisplayFor(modelItem => item.ReorderQuantity)</td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.WidgetId">Edit</a>
-                    
+
                 <a asp-action="Delete" asp-route-id="@item.WidgetId">Delete</a>
             </td>
         </tr>
     }
-    </tbody>
 </table>
 
 

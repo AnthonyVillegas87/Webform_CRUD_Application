@@ -1,8 +1,41 @@
 ﻿@{
     ViewData["Title"] = "Home Page";
 }
+@model IEnumerable<Webform_CRUD_Application.Models.WidgetEntity>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+
+<table class="table">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.WidgetId)</th>
+        <th>@Html.DisplayNameFor(model => model.InventoryCode)</th>
+        <th>@Html.DisplayNameFor(model => model.Description)</th>
+        <th>@Html.DisplayNameFor(model => model.QuantityOnHand)</th>
+        <th>@Html.DisplayNameFor(model => model.ReorderQuantity)</th>
+        <th></th>
+    </tr>
+    
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.WidgetId)
+        <tr>
+            <td>@Html.DisplayFor(modelItem => item.WidgetId)</td>
+            <td>@Html.DisplayFor(modelItem => item.InventoryCode)</td>
+            <td>@Html.DisplayFor(modelItem => item.Description)</td>
+            <td>@Html.DisplayFor(modelItem => item.QuantityOnHand)</td>
+            <td>@Html.DisplayFor(modelItem => item.ReorderQuantity)</td>
+            <td>
+                
+                <a asp-action="" asp-route-id="@item.WidgetId">Edit</a>
+
+                <a asp-action="" asp-route-id="@item.WidgetId">Delete</a>
+            </td>
+        </tr>
+    }
+</table>
+
+
+<p>
+    <a asp-action="" asp-controller="">Create Widget</a>
+    
+</p>
