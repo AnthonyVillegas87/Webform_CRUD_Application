@@ -4,9 +4,13 @@
         <TargetFramework>net7.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
+        <UserSecretsId>78035bf6-64e9-4ccd-85a8-fda831d77808</UserSecretsId>
     </PropertyGroup>
 
     <ItemGroup>
+      <PackageReference Include="DynamicDataTemplatesCS" Version="1.0.1" />
+      <PackageReference Include="DynamicDataTemplatesVB" Version="1.0.1" />
+      <PackageReference Include="Microsoft.Extensions.Configuration.UserSecrets" Version="7.0.0" />
       <PackageReference Include="System.Data.SqlClient" Version="4.8.5" />
     </ItemGroup>
 

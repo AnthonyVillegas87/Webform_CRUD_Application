@@ -1,4 +1,12 @@
+using System.Data.SqlClient;
+using Microsoft.Extensions.Configuration;
+
+
 var builder = WebApplication.CreateBuilder(args);
+var conStrBuilder = new SqlConnectionStringBuilder(
+    builder.Configuration.GetConnectionString("ConnectionStrings"));
+ 
+     
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();

@@ -1,0 +1,108 @@
+@model Webform_CRUD_Application.Models.WidgetEntity
+@{
+    ViewData["Title"] = "AddWidget";
+}
+
+<h1>Create Widget</h1>
+
+<br>
+<form asp-action="AddNewWidget">
+    
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <b>@ViewBag.Message</b>
+        </div>
+    </div>
+
+    <fieldset>
+        <legend class="reset">Widget Form</legend>
+        <div class="row">
+            <div class="col-6">
+                <label asp-for="InventoryCode">Inventory Code:</label>
+                @Html.TextBoxFor(model => model.InventoryCode, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.InventoryCode)
+            </div>
+            <div class="col-6">
+                <label asp-for="Description">Description:</label>
+                @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <label asp-for="QuantityOnHand">Quantity On Hand:</label>
+                @Html.TextBoxFor(model => model.QuantityOnHand, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.QuantityOnHand)
+            </div>
+            <div class="col-6">
+                <label asp-for="ReorderQuantity">Reorder Quantity:</label>
+                @Html.TextBoxFor(model => model.ReorderQuantity, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ReorderQuantity)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-outline-primary"/>
+        </div>
+    </fieldset>
+</form>
+
+<br>
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+
+
+
+
+
+
+
+
+@* @using (Html.BeginForm()) *@
+@* { *@
+@* *@
+@*     <form asp-action="AddNewWidget"> *@
+@*         <fieldset> *@
+@*             <legend>Widget Form</legend> *@
+@*             <div> *@
+@*                 <label for="InventoryCode">Inventory Code:</label> *@
+@*                 <dd:TextBoxField For="Model.InventoryCode"/> *@
+@*                 <dd:ValidationMessage Tag="span" For="Model.InventoryCode"/> *@
+@*             </div> *@
+@*             <div> *@
+@*                 <label for="Description">Description:</label> *@
+@*                 <dd:TextBoxField For="Model.Description"/> *@
+@*                 <dd:ValidationMessage Tag="span" For="Model.Description"/> *@
+@*             </div> *@
+@*             <div> *@
+@*                 <label for="QuantityOnHand">Quantity On Hand:</label> *@
+@*                 <dd:TextBoxField For="Model.QuantityOnHand"/> *@
+@*                 <dd:ValidationMessage Tag="span" For="Model.QuantityOnHand"/> *@
+@*             </div> *@
+@*             <div> *@
+@*                 <label for="ReorderQuantity">Reorder Quantity:</label> *@
+@*                 <dd:TextBoxField For="Model.ReorderQuantity"/> *@
+@*                 <dd:ValidationMessage Tag="span" For="Model.ReorderQuantity"/> *@
+@*             </div> *@
+@*             <div> *@
+@*                 <input type="submit" value="Create"/> *@
+@*             </div> *@
+@*         </fieldset> *@
+@*     </form> *@
+@* } *@
+@* *@
+@* @section scripts { *@
+@*     <script> *@
+@*         $(function () { *@
+@*             $("form").validate(); *@
+@*         }); *@
+@*     </script> *@
+@* } *@
+
+
+
+
