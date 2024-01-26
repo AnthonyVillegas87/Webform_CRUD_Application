@@ -2,13 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using Webform_CRUD_Application.Data;
 using Webform_CRUD_Application.Models;
-
 namespace Webform_CRUD_Application.Controllers;
 
 public class HomeController : Controller
 {
     private readonly ILogger<HomeController> _logger;
-
     public HomeController(ILogger<HomeController> logger)
     {
         _logger = logger;
@@ -17,7 +15,7 @@ public class HomeController : Controller
     
     
     
-    // GET Widgets Home page
+    // READ Widgets Home page
     public IActionResult Index()
     {
         List<WidgetEntity> widgets = new List<WidgetEntity>();
@@ -31,17 +29,15 @@ public class HomeController : Controller
         widgets = widgetRepository.GetWidgetList();
         return View(widgets);
     }
-
     
     
-    
-    // Create Widget page
+    // CREATE Widget page
     public ActionResult AddWidget()
     {
         return View();
     }
 
-    // Create Widget POST
+    // Widget POST page
     public ActionResult AddNewWidget(WidgetEntity entity)
     {
         
@@ -72,9 +68,45 @@ public class HomeController : Controller
     }
     
     
+    //  UPDATE Widget page
+    public IActionResult UpdateWidget(int id)
+    {
+        WidgetRepository widgetRepository = new WidgetRepository();
+        WidgetEntity widget = new WidgetEntity();
+        
+        widget = widgetRepository.GetWidgetById(id); 
+        return View(widget); 
+        
+    }
+    
+
+    // Update Widget method
+    public IActionResult UpdateWidgetDetails(int id, WidgetEntity details)
+    {
+
+        if (ModelState.IsValid)
+        {
+            WidgetRepository widgetRepository = new WidgetRepository();
+            if (widgetRepository.UpdateWidgetByDetails(id, details))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Something went wrong. Please try again.");
+            }
+        }
+        
+        return View("UpdateWidget", details);
+        
+    }
     
     
-    
+    // Delete Widget page
+    public ActionResult DeleteWidgetView()
+    {
+        return View();
+    }
     
     
     

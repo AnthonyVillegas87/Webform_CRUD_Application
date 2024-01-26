@@ -16,10 +16,6 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application
 build_property._RazorSourceGeneratorDebug = 
 
-[/Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application/Pages/Widget/Index.cshtml]
-build_metadata.AdditionalFiles.TargetPath = UGFnZXMvV2lkZ2V0L0luZGV4LmNzaHRtbA==
-build_metadata.AdditionalFiles.CssScope = 
-
 [/Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application/Views/Home/AddWidget.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9BZGRXaWRnZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
@@ -30,6 +26,10 @@ build_metadata.AdditionalFiles.CssScope =
 
 [/Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application/Views/Home/UpdateWidget.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9VcGRhdGVXaWRnZXQuY3NodG1s
 build_metadata.AdditionalFiles.CssScope = 
 
 [/Users/anthonyvillegas/RiderProjects/Webform_CRUD_Application/Webform_CRUD_Application/Views/Shared/Error.cshtml]

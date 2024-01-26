@@ -1,0 +1,64 @@
+@model Webform_CRUD_Application.Models.WidgetEntity
+@{
+    ViewData["Title"] = "Update Widget";
+}
+
+<h1>Update Widget Details</h1>
+
+<br>
+<form asp-action="UpdateWidgetDetails">
+    <fieldset>
+        <legend class="reset">Widget Form</legend>
+        <div class="row">
+            <div class="col-6">
+                <input asp-for="WidgetId" hidden>
+                <label asp-for="InventoryCode">Inventory Code:</label>
+                @Html.TextBoxFor(model => model.InventoryCode, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.InventoryCode)
+            </div>
+            <div class="col-6">
+                <label asp-for="Description">Description:</label>
+                @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.Description)
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-6">
+                <label asp-for="QuantityOnHand">Quantity On Hand:</label>
+                @Html.TextBoxFor(model => model.QuantityOnHand, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.QuantityOnHand)
+            </div>
+            <div class="col-6">
+                <label asp-for="ReorderQuantity">Reorder Quantity:</label>
+                @Html.TextBoxFor(model => model.ReorderQuantity, new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.ReorderQuantity)
+            </div>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-outline-primary"/>
+        </div>
+    </fieldset>
+</form>
+
+<div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="row">
+        <div class="col-12 text-center">
+            <b>@ViewBag.Message</b>
+        </div>
+    </div>
+
+
+<br>
+<div>
+    <a asp-action="Index">Back to Home</a>
+</div>
+
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+

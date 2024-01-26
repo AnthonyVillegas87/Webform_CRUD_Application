@@ -24,9 +24,7 @@
             <td>@Html.DisplayFor(modelItem => item.QuantityOnHand)</td>
             <td>@Html.DisplayFor(modelItem => item.ReorderQuantity)</td>
             <td>
-
-                <a asp-action="" asp-route-id="@item.WidgetId">Edit</a>
-
+                <a asp-action="UpdateWidget" asp-route-id="@item.WidgetId">Edit</a>
                 <a asp-action="" asp-route-id="@item.WidgetId">Delete</a>
             </td>
         </tr>
@@ -38,6 +36,12 @@
     <a asp-action="AddWidget" asp-controller="Home">++</a>
 </p>
 
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 
 

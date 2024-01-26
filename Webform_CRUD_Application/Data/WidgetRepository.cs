@@ -14,7 +14,6 @@ public class WidgetRepository
     
     //Establish DB connectionString
     public WidgetRepository()
-    
     {
 
         _sqlConnection = new SqlConnection(dbConnection);
@@ -58,7 +57,7 @@ public class WidgetRepository
 
     }
     
-    // Method to Add Widget
+    // Method for dbo.sp_SaveWidget
     public bool AddWidget(WidgetEntity entity)
     {
         int result = 0;
@@ -81,7 +80,69 @@ public class WidgetRepository
         return result >= 1;
     }
     
+    // Method for Update (dbo.sp_SaveWidget)
+    public bool UpdateWidgetByDetails(int id, WidgetEntity entity)
+    {
+        
+        int result = 0;
+        using (_sqlConnection)
+        {
+            SqlCommand saveCommand = new SqlCommand("sp_SaveWidget", _sqlConnection);
+            saveCommand.CommandType = CommandType.StoredProcedure;
+            saveCommand.Parameters.AddWithValue("@WidgetID", id);
+            saveCommand.Parameters.AddWithValue("@InventoryCode", entity.InventoryCode);
+            saveCommand.Parameters.AddWithValue("@Description", entity.Description);
+            saveCommand.Parameters.AddWithValue("@QuantityOnHand", entity.QuantityOnHand);
+            saveCommand.Parameters.AddWithValue("@ReorderQuantity", entity.ReorderQuantity);
+            _sqlConnection.Open();
+            result = saveCommand.ExecuteNonQuery();
+            _sqlConnection.Close();
+            
+        }
+
+        return result >= 1;
+    }
     
+    
+    // Method for dbo.sp_GetWidgetById
+    public WidgetEntity GetWidgetById(int id)
+    {
+        WidgetEntity widgetClassEntity = new WidgetEntity();
+
+        using (_sqlConnection)
+        {
+            SqlCommand getCommand = new SqlCommand("sp_GetWidgetById", _sqlConnection);
+            getCommand.CommandType = CommandType.StoredProcedure;
+
+            SqlParameter command;
+            getCommand.Parameters.Add(new SqlParameter("@WidgetID", id));
+
+            SqlDataAdapter dataAdapter = new SqlDataAdapter(getCommand);
+            DataTable dataTable = new DataTable();
+            dataAdapter.Fill(dataTable);
+
+            foreach (DataRow dataRow in dataTable.Rows)
+            {
+                widgetClassEntity = new WidgetEntity()
+                    {
+
+                        WidgetId = Convert.ToInt32(dataRow["WidgetID"]),
+                        InventoryCode = dataRow["InventoryCode"].ToString(),
+                        Description = dataRow["Description"].ToString(),
+                        QuantityOnHand = Convert.ToInt32(dataRow["QuantityOnHand"]),
+                        ReorderQuantity = Convert.ToInt32(dataRow["ReorderQuantity"])
+
+
+                    };
+
+            }
+        }
+
+        return widgetClassEntity;
+    }
+    
+
+    // Method for dbo.sp_DeleteWidget
     
     
     
