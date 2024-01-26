@@ -1,54 +1,42 @@
 @model Webform_CRUD_Application.Models.WidgetEntity
 @{
-    ViewData["Title"] = "Update Widget";
+    ViewData["Title"] = "Delete Widget";
 }
 
-<h1>Update Widget Details</h1>
+<h1>Delete Widget</h1>
 
 <br>
-<form asp-action="UpdateWidgetDetails">
+<form asp-action="DeleteWidgetDetails">
+    
     <fieldset>
         <legend class="reset">Widget Form</legend>
         <div class="row">
             <div class="col-6">
                 <input asp-for="WidgetId" hidden>
                 <label asp-for="InventoryCode">Inventory Code:</label>
-                @Html.TextBoxFor(model => model.InventoryCode, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.InventoryCode)
+                @Html.TextBoxFor(model => model.InventoryCode, new {@class = "form-control", @readonly = "readonly"})
+
             </div>
             <div class="col-6">
                 <label asp-for="Description">Description:</label>
-                @Html.TextBoxFor(model => model.Description, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.Description)
+                @Html.TextBoxFor(model => model.Description, new {@class = "form-control", @readonly = "readonly"})
             </div>
         </div>
-
         <div class="row">
             <div class="col-6">
                 <label asp-for="QuantityOnHand">Quantity On Hand:</label>
-                @Html.TextBoxFor(model => model.QuantityOnHand, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.QuantityOnHand)
+                @Html.TextBoxFor(model => model.QuantityOnHand, new {@class = "form-control", @readonly = "readonly"})
             </div>
             <div class="col-6">
                 <label asp-for="ReorderQuantity">Reorder Quantity:</label>
-                @Html.TextBoxFor(model => model.ReorderQuantity, new {@class = "form-control"})
-                @Html.ValidationMessageFor(model => model.ReorderQuantity)
+                @Html.TextBoxFor(model => model.ReorderQuantity, new {@class = "form-control", @readonly = "readonly"})
             </div>
         </div>
-
         <div class="form-group">
-            <input type="submit" value="Save" class="btn btn-outline-primary"/>
+            <input type="submit" value="Delete" class="btn btn-outline-danger"/>
         </div>
     </fieldset>
 </form>
-
-<div asp-validation-summary="ModelOnly" class="text-danger"></div>
-    <div class="row">
-        <div class="col-12 text-center">
-            <b>@ViewBag.Message</b>
-        </div>
-    </div>
-
 
 <br>
 <div>
@@ -61,4 +49,3 @@
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
 }
-

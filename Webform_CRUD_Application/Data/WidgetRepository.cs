@@ -16,6 +16,7 @@ public class WidgetRepository
     public WidgetRepository()
     {
 
+
         _sqlConnection = new SqlConnection(dbConnection);
         
     }
@@ -141,10 +142,25 @@ public class WidgetRepository
         return widgetClassEntity;
     }
     
+    
 
     // Method for dbo.sp_DeleteWidget
-    
-    
+
+    public bool DeleteWidget(int id)
+    {
+        using (_sqlConnection)
+        {
+            SqlCommand deleteCommand = new SqlCommand("sp_DeleteWidget", _sqlConnection);
+            deleteCommand.CommandType = CommandType.StoredProcedure;
+            deleteCommand.Parameters.AddWithValue("@WidgetID", id);
+
+            _sqlConnection.Open();
+            int rowsAffected = deleteCommand.ExecuteNonQuery();
+            _sqlConnection.Close();
+
+            return rowsAffected > 0;
+        }
+    }
     
     
     

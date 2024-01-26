@@ -103,10 +103,42 @@ public class HomeController : Controller
     
     
     // Delete Widget page
-    public ActionResult DeleteWidgetView()
+    public ActionResult DeleteWidgetView(int id)
     {
-        return View();
+        WidgetRepository widgetRepository = new WidgetRepository();
+        WidgetEntity widget = new WidgetEntity();
+        
+        widget = widgetRepository.GetWidgetById(id); 
+        return View(widget); 
     }
+    
+    // Delete Widget method
+    public ActionResult DeleteWidgetDetails(int id)
+    {
+        try
+        {
+            WidgetRepository widgetRepository = new WidgetRepository();
+            if (widgetRepository.DeleteWidget(id))
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                ModelState.AddModelError("", "Something went wrong. Please try again.");
+                return View("Index");
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "An error occurred while deleting the widget.");
+            return View("Index");
+        }
+    }
+    
+    
+    
+    
+    
     
     
     
