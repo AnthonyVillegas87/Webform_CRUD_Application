@@ -7,10 +7,12 @@
 
 <br>
 <form asp-action="UpdateWidgetDetails">
+            
     <fieldset>
         <legend class="reset">Widget Form</legend>
         <div class="row">
             <div class="col-6">
+
                 <input asp-for="WidgetId" hidden>
                 <label asp-for="InventoryCode">Inventory Code:</label>
                 @Html.TextBoxFor(model => model.InventoryCode, new {@class = "form-control"})
@@ -36,10 +38,12 @@
             </div>
         </div>
 
+
         <div class="form-group">
             <input type="submit" value="Save" class="btn btn-outline-primary"/>
         </div>
     </fieldset>
+    
 </form>
 
 <div asp-validation-summary="ModelOnly" class="text-danger"></div>
@@ -49,15 +53,8 @@
         </div>
     </div>
 
-
 <br>
 <div>
-    <a asp-action="Index">Back to Home</a>
+    <a asp-action="Index" class="btn btn-info">Back to Home</a>
 </div>
 
-@section Scripts
-{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}

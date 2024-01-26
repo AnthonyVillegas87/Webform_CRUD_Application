@@ -3,8 +3,9 @@
 }
 @model IEnumerable<Webform_CRUD_Application.Models.WidgetEntity>
 
+<h1 class="text-center">Widget Inventory</h1>
 
-<table class="table">
+<table class="table table-bordered">
     <tr>
         <th>@Html.DisplayNameFor(model => model.WidgetId)</th>
         <th>@Html.DisplayNameFor(model => model.InventoryCode)</th>
@@ -31,16 +32,11 @@
     }
 </table>
 <p>
-    <a asp-action="AddWidget" asp-controller="Home" class="btn-outline-primary">Add to Inventory</a>
+    <a asp-action="AddWidget" asp-controller="Home" class="btn btn-outline-primary">Add to Inventory</a>
 </p>
 
 
-@section Scripts
-{
-    @{
-        await Html.RenderPartialAsync("_ValidationScriptsPartial");
-    }
-}
+
 
 
 

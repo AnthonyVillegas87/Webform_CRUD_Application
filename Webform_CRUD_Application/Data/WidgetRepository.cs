@@ -62,8 +62,8 @@ public class WidgetRepository
     public bool AddWidget(WidgetEntity entity)
     {
         int result = 0;
-        using (_sqlConnection)
-        {
+        
+        
             SqlCommand saveCommand = new SqlCommand("sp_SaveWidget", _sqlConnection);
             saveCommand.CommandType = CommandType.StoredProcedure;
 
@@ -76,21 +76,22 @@ public class WidgetRepository
             result = saveCommand.ExecuteNonQuery();
             _sqlConnection.Close();
             
-        }
+        
 
         return result >= 1;
     }
     
-    // Method for Update (dbo.sp_SaveWidget)
+    
+    // Method for Update dbo.sp_UpdateWidget
     public bool UpdateWidgetByDetails(int id, WidgetEntity entity)
     {
         
         int result = 0;
         using (_sqlConnection)
         {
-            SqlCommand saveCommand = new SqlCommand("sp_SaveWidget", _sqlConnection);
-            saveCommand.CommandType = CommandType.StoredProcedure;
-            saveCommand.Parameters.AddWithValue("@WidgetID", id);
+            SqlCommand saveCommand = new SqlCommand("sp_UpdateWidget", _sqlConnection);
+            saveCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            saveCommand.Parameters.AddWithValue("@WidgetID", entity.WidgetId);
             saveCommand.Parameters.AddWithValue("@InventoryCode", entity.InventoryCode);
             saveCommand.Parameters.AddWithValue("@Description", entity.Description);
             saveCommand.Parameters.AddWithValue("@QuantityOnHand", entity.QuantityOnHand);
@@ -110,8 +111,8 @@ public class WidgetRepository
     {
         WidgetEntity widgetClassEntity = new WidgetEntity();
 
-        using (_sqlConnection)
-        {
+        
+        
             SqlCommand getCommand = new SqlCommand("sp_GetWidgetById", _sqlConnection);
             getCommand.CommandType = CommandType.StoredProcedure;
 
@@ -124,7 +125,7 @@ public class WidgetRepository
 
             foreach (DataRow dataRow in dataTable.Rows)
             {
-                widgetClassEntity = new WidgetEntity()
+                widgetClassEntity = new WidgetEntity
                     {
 
                         WidgetId = Convert.ToInt32(dataRow["WidgetID"]),
@@ -136,24 +137,29 @@ public class WidgetRepository
 
                     };
 
+            
             }
-        }
 
         return widgetClassEntity;
     }
     
     
+    
 
     // Method for dbo.sp_DeleteWidget
 
-    public bool DeleteWidget(int id)
+    public bool DeleteWidget(int id, WidgetEntity entity)
     {
         using (_sqlConnection)
         {
             SqlCommand deleteCommand = new SqlCommand("sp_DeleteWidget", _sqlConnection);
-            deleteCommand.CommandType = CommandType.StoredProcedure;
-            deleteCommand.Parameters.AddWithValue("@WidgetID", id);
-
+            deleteCommand.CommandType = System.Data.CommandType.StoredProcedure;
+            deleteCommand.Parameters.AddWithValue("@WidgetID", entity.WidgetId);
+            deleteCommand.Parameters.AddWithValue("@InventoryCode", entity.InventoryCode);
+            deleteCommand.Parameters.AddWithValue("@Description", entity.Description);
+            deleteCommand.Parameters.AddWithValue("@QuantityOnHand", entity.QuantityOnHand);
+            deleteCommand.Parameters.AddWithValue("@ReorderQuantity", entity.ReorderQuantity);
+            
             _sqlConnection.Open();
             int rowsAffected = deleteCommand.ExecuteNonQuery();
             _sqlConnection.Close();

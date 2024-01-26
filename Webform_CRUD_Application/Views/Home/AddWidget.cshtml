@@ -1,9 +1,10 @@
 @model Webform_CRUD_Application.Models.WidgetEntity
 @{
-    ViewData["Title"] = "AddWidget";
+    ViewData["Title"] = "CreateWidget";
 }
 
-<h1>Create Widget</h1>
+
+<h1>Create a Widget</h1>
 
 <br>
 <form asp-action="AddNewWidget">
@@ -49,12 +50,19 @@
     </fieldset>
 </form>
 
+
 <br>
 <div>
-    <a asp-action="Index">Back to Home</a>
+    <a asp-action="Index" class="btn btn-info">Back to Home</a>
 </div>
 
 
+@section Scripts
+{
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
 
 
 

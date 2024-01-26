@@ -11,19 +11,12 @@ public class HomeController : Controller
     {
         _logger = logger;
     }
-
-    
-    
     
     // READ Widgets Home page
     public IActionResult Index()
     {
         List<WidgetEntity> widgets = new List<WidgetEntity>();
         
-        // var config = new ConfigurationBuilder()
-        //     .SetBasePath(
-        //         Directory.GetCurrentDirectory())
-        //     .AddJsonFile("secrets.json").Build(); 
         WidgetRepository widgetRepository = new WidgetRepository();
         
         widgets = widgetRepository.GetWidgetList();
@@ -37,7 +30,7 @@ public class HomeController : Controller
         return View();
     }
 
-    // Widget POST page
+    // CREATE Widget method
     public ActionResult AddNewWidget(WidgetEntity entity)
     {
         
@@ -45,12 +38,12 @@ public class HomeController : Controller
         {
             if (ModelState.IsValid)
             {
-                // // Validation that entity has been successfully added
-                // if (entity.ReorderQuantity < 0)
-                // {
-                //     ViewBag.Message = "Unable to record Entry!";
-                //     return View("AddWidget");
-                // }
+                // Validation that entity has been successfully added
+                if (entity.ReorderQuantity < 0)
+                {
+                    ViewBag.Message = "Unable to record Entry!";
+                    return View("AddWidget");
+                }
                 
                 WidgetRepository widgetRepository = new WidgetRepository();
                 if (widgetRepository.AddWidget(entity))
@@ -91,13 +84,11 @@ public class HomeController : Controller
             {
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ModelState.AddModelError("", "Something went wrong. Please try again.");
-            }
+           
         }
         
-        return View("UpdateWidget", details);
+        
+        return View("UpdateWidget");
         
     }
     
@@ -113,45 +104,17 @@ public class HomeController : Controller
     }
     
     // Delete Widget method
-    public ActionResult DeleteWidgetDetails(int id)
+    public ActionResult DeleteWidgetDetails(int id, WidgetEntity entity)
     {
-        try
-        {
             WidgetRepository widgetRepository = new WidgetRepository();
-            if (widgetRepository.DeleteWidget(id))
+            if (widgetRepository.DeleteWidget(id, entity))
             {
                 return RedirectToAction("Index");
             }
-            else
-            {
-                ModelState.AddModelError("", "Something went wrong. Please try again.");
-                return View("Index");
-            }
-        }
-        catch (Exception ex)
-        {
-            _logger.LogError(ex, "An error occurred while deleting the widget.");
-            return View("Index");
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
-    public IActionResult Privacy()
-    {
-        return View();
+            return View("DeleteWidgetView");
     }
+    
 
     [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
     public IActionResult Error()
