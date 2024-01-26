@@ -17,8 +17,7 @@ public class WidgetRepository
     {
 
 
-        string dbConnection =
-            "Data Source=localhost,1433;Database=DotNetDevSample;User Id=sa;Password=reallyStrongPwd123;";
+        string dbConnection = "Data Source=localhost,1433;Database=DotNetDevSample;User Id=sa;Password=reallyStrongPwd123;";
         
         _sqlConnection = new SqlConnection(dbConnection);
         
